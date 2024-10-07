@@ -12,13 +12,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
 
-  display = 'none';
-  private _counter = 0;
-
-  handleClick() {
-    this._counter++;
-    this.display = this._counter.toString();
-    console.log('handleClick');
+  display = '';
+  
+  handleClick(value: any) {
+    console.log('click', value);
+    this.display += value;
     
   }
 }
