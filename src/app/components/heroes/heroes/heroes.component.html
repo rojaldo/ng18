@@ -10,6 +10,16 @@
             placeholder=""
             [(ngModel)]="heroName"
         />
+        <label for="" class="form-label">Hero Description</label>
+        <input
+            type="text"
+            class="form-control"
+            name=""
+            id=""
+            aria-describedby="helpId"
+            placeholder=""
+            [(ngModel)]="heroDescription"
+        />
     </div>
 
         <button
@@ -22,10 +32,12 @@
     </button>
 
     
-    
+    @if (showErrorMessage) {
+        <ngb-alert [type]="'danger'" (closed)="closeAlert()">{{ errorMessage }}</ngb-alert>
+    }
     <ul class="list-group list-group mt-4">
         @for (hero of heroes; track $index) {
-            <li class="list-group-item">{{hero}}</li>
+            <li class="list-group-item"><b>{{hero.name}}: </b> {{hero.description}}</li>
         }
     </ul>
     
