@@ -1,46 +1,12 @@
 <div class="container">
-    <div class="mb-3">
-        <label for="" class="form-label">Hero Name</label>
-        <input
-            type="text"
-            class="form-control"
-            name=""
-            id=""
-            aria-describedby="helpId"
-            placeholder=""
-            [(ngModel)]="heroName"
-        />
-        <label for="" class="form-label">Hero Description</label>
-        <input
-            type="text"
-            class="form-control"
-            name=""
-            id=""
-            aria-describedby="helpId"
-            placeholder=""
-            [(ngModel)]="heroDescription"
-        />
-    </div>
 
-        <button
-        type="button"
-        class="btn btn-primary"
-        (click)="addHero()"
-        [disabled]="!heroName"
-    >
-        Add Hero
-    </button>
 
+    <app-hero-form (onAddHero)="addHero($event)" [newHero]="hero"></app-hero-form>
     
     @if (showErrorMessage) {
         <ngb-alert [type]="'danger'" (closed)="closeAlert()">{{ errorMessage }}</ngb-alert>
     }
-    <ul class="list-group list-group mt-4">
-        @for (hero of heroes; track $index) {
-            <li class="list-group-item"><b>{{hero.name}}: </b> {{hero.description}}
-                <button class="btn btn-danger" (click)="deleteHero($index)">Delete</button>
-            </li>
-        }
-    </ul>
+
+    <app-heroes-list [heroesList]="heroes" (onDelete)="deleteHero($event)"></app-heroes-list>
     
 </div>

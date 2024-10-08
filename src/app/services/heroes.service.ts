@@ -10,7 +10,7 @@ export class HeroesService {
   constructor() { }
 
   get heroes(): Hero[] {
-    return this._heroes;
+    return [...this._heroes];
   }
 
   addHero(hero: Hero) {
@@ -20,10 +20,14 @@ export class HeroesService {
       throw new Error('Hero name is already in the list');
     }
 
-    this.heroes.push(hero);
+    this._heroes.push( new Hero(hero.name, hero.description));
+    console.log(this.heroes);
+    console.log(hero);
+    
+    
   }
 
   deleteHero(index: number) {
-    this.heroes.splice(index, 1);
+    this._heroes.splice(index, 1);
   }
 }
