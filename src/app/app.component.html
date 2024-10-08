@@ -1,3 +1,27 @@
-<app-calculator></app-calculator>
+<div class="container">
+
+  <div class="d-flex mt-5">
+    <div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills flex-column" orientation="vertical">
+      <ng-container ngbNavItem="calculator">
+        <button ngbNavLink>Calculator</button>
+        <ng-template ngbNavContent>
+          <app-calculator></app-calculator>
+        </ng-template>
+      </ng-container>
+      <ng-container ngbNavItem="heroes">
+        <button ngbNavLink>Heroes</button>
+        <ng-template ngbNavContent>
+          <app-heroes></app-heroes>
+        </ng-template>
+      </ng-container>
+
+    </div>
+
+    <div [ngbNavOutlet]="nav" class="ms-4"></div>
+  </div>
+</div>
+
+
+
 
 
