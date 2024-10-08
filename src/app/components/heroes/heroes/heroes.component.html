@@ -11,13 +11,16 @@
             [(ngModel)]="heroName"
         />
     </div>
-    <button
+
+        <button
         type="button"
         class="btn btn-primary"
         (click)="addHero()"
+        [disabled]="!heroName"
     >
         Add Hero
     </button>
+
     
     
     <ul class="list-group list-group mt-4">

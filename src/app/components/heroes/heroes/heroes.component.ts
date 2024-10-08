@@ -15,6 +15,7 @@ export class HeroesComponent {
   heroName = '';
 
   addHero() {
+
     this.heroes.push(this.heroName);
     this.heroName = '';
   }
