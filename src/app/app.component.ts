@@ -5,12 +5,13 @@ import { CalculatorComponent } from "./components/calculator/calculator/calculat
 import { CalculatorService } from './services/calculator.service';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeroesComponent } from './components/heroes/heroes/heroes.component';
+import { HeroesService } from './services/heroes.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, JsonPipe, NgbNavModule, CalculatorComponent, HeroesComponent],
-  providers: [CalculatorService],
+  providers: [CalculatorService, HeroesService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

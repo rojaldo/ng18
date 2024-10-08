@@ -1,8 +1,9 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Hero } from '../../../models/hero';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeroesService } from '../../../services/heroes.service';
 
 @Component({
   selector: 'app-heroes',
@@ -11,27 +12,40 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './heroes.component.html',
   styleUrl: './heroes.component.scss'
 })
-export class HeroesComponent {
+export class HeroesComponent implements OnInit {
 
-  heroes: Hero[] = [ new Hero('Superman', 'Man of Steel'), new Hero('Batman', 'The Dark Knight') ];
+  heroes: Hero[] = [];
   heroName = '';
   heroDescription = '';
   showErrorMessage = false;
   errorMessage = 'Hero name is already in the list';
 
-  addHero() {
-
-    //check if hero name is already in the list
-    if (this.heroes.find(hero => hero.name.toLocaleLowerCase() === this.heroName.toLocaleLowerCase())) {
-      this.showErrorMessage = true;
-      return;
-    }
-
-    this.heroes.push(new Hero(this.heroName, this.heroDescription));
-    this.heroName = '';
-    this.heroDescription = '';
-    this.showErrorMessage = false;
+  constructor(private service: HeroesService) {
+    
   }
+
+  ngOnInit(): void {
+
+    this.heroes = this.service.heroes;
+    
+  }
+
+  addHero() {
+    try {
+      this.service.addHero(new Hero(this.heroName, this.heroDescription));
+      this.heroName = '';
+      this.heroDescription = '';
+      this.showErrorMessage = false;
+    }catch (e) {
+      this.showErrorMessage = true;
+    }
+  }
+
+  deleteHero(index: number) {
+    this.service.deleteHero(index);
+  }
+
+
 
   closeAlert() {
 		this.showErrorMessage = false;
