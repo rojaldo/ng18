@@ -27,7 +27,6 @@ export class ApodService {
         this.apod$.error(error);
       },
       complete: () => {
-        this.apod$.complete();
       }
     };
 
