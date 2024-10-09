@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Apod } from '../models/apod';
 
 @Injectable()
 export class ApodService {
 
-  private _data: any = {};
-  data$ = new BehaviorSubject<any>(this._data);
+  private _apod: Apod = new Apod();
+  apod$ = new BehaviorSubject<Apod>(this._apod);
 
   constructor(private _http: HttpClient) { }
 
@@ -18,16 +19,15 @@ export class ApodService {
 
     const observer = {
       next: (data: any) => {
-        console.log(data);
-        this._data = data;
-        this.data$.next(this._data);
+        this._apod = new Apod(data);
+        this.apod$.next(this._apod);
       },
       error: (error: any) => {
         console.log(error);
-        this.data$.error(error);
+        this.apod$.error(error);
       },
       complete: () => {
-        this.data$.complete();
+        this.apod$.complete();
       }
     };
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApodService } from '../../../services/apod.service';
 import { JsonPipe } from '@angular/common';
+import { Apod } from '../../../models/apod';
 
 @Component({
   selector: 'app-apod',
@@ -11,7 +12,7 @@ import { JsonPipe } from '@angular/common';
 })
 export class ApodComponent implements OnInit {
 
-  data: any = {};
+  apod: Apod = new Apod();
 
   constructor(private service: ApodService) {
   }
@@ -19,8 +20,8 @@ export class ApodComponent implements OnInit {
   ngOnInit(): void {
     this.service.getApod();
     const observer = {
-      next: (data: any) => {
-        this.data = data;
+      next: (data: Apod) => {
+        this.apod = data;
       },
       error: (error: any) => {
         console.error(error);
@@ -29,7 +30,9 @@ export class ApodComponent implements OnInit {
         console.log('Completed');
       }
     }
-    this.service.data$.subscribe(observer);
+    this.service.apod$.subscribe(observer);
   }
 
 }
+
+
