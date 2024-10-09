@@ -11,16 +11,18 @@ export class ApodService {
 
   constructor(private _http: HttpClient) { }
 
-  getApod() {
+  getApod(dateStr?: string) {
 
     const baseURL = 'https://api.nasa.gov/planetary/apod';
-    const apiKey = 'DEMO_KEY';
+    const apiKey = 'tqz634Z1x0LiJzjbhSyUoExrZaGKLM0MG1VnROR6';
     let url = `${baseURL}?api_key=${apiKey}`;
-
+    dateStr ? url += `&date=${dateStr}` : null;
+    
     const observer = {
       next: (data: any) => {
         this._apod = new Apod(data);
         this.apod$.next(this._apod);
+        
       },
       error: (error: any) => {
         console.log(error);

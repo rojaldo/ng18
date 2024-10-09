@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CalculatorService } from '../../../services/calculator.service';
 import { CalculatorDisplayComponent } from '../calculator-display/calculator-display.component';
 import { CalculatorKeyboardComponent } from '../calculator-keyboard/calculator-keyboard.component';
