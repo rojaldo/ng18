@@ -15,14 +15,21 @@ export class ApodComponent implements OnInit {
 
   constructor(private service: ApodService) {
   }
+
   ngOnInit(): void {
     this.service.getApod();
-    this.service.data$.subscribe(data => {
-      this.data = data;
-    });
+    const observer = {
+      next: (data: any) => {
+        this.data = data;
+      },
+      error: (error: any) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log('Completed');
+      }
+    }
+    this.service.data$.subscribe(observer);
   }
-
-  
-  
 
 }
