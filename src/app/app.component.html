@@ -20,7 +20,12 @@
           <app-apod></app-apod>
         </ng-template>
       </ng-container>
-
+      <ng-container ngbNavItem="countries">
+        <button ngbNavLink>Countries</button>
+        <ng-template ngbNavContent>
+          <app-countries></app-countries>
+        </ng-template>
+      </ng-container>
     </div>
 
     <div [ngbNavOutlet]="nav" class="ms-4"></div>
