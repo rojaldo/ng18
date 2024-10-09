@@ -5,47 +5,30 @@ import { Apod } from '../../../models/apod';
 import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { ApodPickerComponent } from "../apod-picker/apod-picker.component";
+import { ApodInfoComponent } from "../apod-info/apod-info.component";
 
 @Component({
   selector: 'app-apod',
   standalone: true,
-  imports: [NgbDatepickerModule, FormsModule, JsonPipe, YouTubePlayer],
+  imports: [NgbDatepickerModule, FormsModule, JsonPipe, YouTubePlayer, ApodPickerComponent, ApodInfoComponent],
   templateUrl: './apod.component.html',
   styleUrl: './apod.component.scss'
 })
-export class ApodComponent implements OnInit {
+export class ApodComponent {
 
-  apod: Apod = new Apod();
-  date: NgbDateStruct = { year: 2021, month: 6, day: 1 };
+  // today date in the format 'YYYY-MM-DD'
+  date: string = new Date().toISOString().slice(0, 10);
 
-  constructor(private service: ApodService) {
+
+  constructor() {
   }
 
-  ngOnInit(): void {
-    this.service.getApod();
-    const observer = {
-      next: (data: Apod) => {       
-        this.apod = data;
-      },
-      error: (error: any) => {
-        console.error(error);
-      },
-      complete: () => {
-        console.log('Completed');
-      }
-    }
-    this.service.apod$.subscribe(observer);
+  onDateChange(dateStr: string) {
+    this.date = dateStr;
   }
 
-  handleDateChange() {
-    // get date from this.date and convert to string in the format 'YYYY-MM-DD'
-    console.log('Date changed: ', this.date);
-    
-    let dateStr = `${this.date.year}-${this.date.month}-${this.date.day}`;
-    console.log('Date string: ', dateStr);
-    
-    this.service.getApod(dateStr);
-  }
+
 
 }
 
