@@ -14,9 +14,7 @@ export class CountriesService {
   getCountries() {
     const observer = {
       next: (data: any) => {
-        data.forEach((country: any) => {
-          this._countries.push(new Country(country));
-        });
+        this._countries = data.map((country: any) => new Country(country));
         this.countries$.next(this._countries);
       },
       error: (error: any) => {
