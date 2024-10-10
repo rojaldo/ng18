@@ -4,7 +4,7 @@
 <form action="" class="py-5">
     <mat-form-field class="example-full-width my-2">
         <mat-label>Filter by name</mat-label>
-        <input matInput placeholder="Filter by name" value="" [(ngModel)]="nameFilter">
+        <input matInput placeholder="Filter by name" value="" [(ngModel)]="nameFilter" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
 </form>
   <br>

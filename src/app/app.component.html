@@ -1,43 +1,25 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+	<div class="container">
+		<a class="navbar-brand" id="title" href="#">{{title}}</a>
+		<button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+			data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavId">
+			<ul class="navbar-nav me-auto mt-2 mt-lg-0">
+				@for (route of myRoutes.slice(0, myRoutes.length - 2); track $index) {
+					<li class="nav-item">
+						<a class="nav-link active" [routerLink]="route.path" routerLinkActive="active" aria-current="page">{{route.path}}</a>
+					</li>	
+				}
+
+			</ul>
+		</div>
+	</div>
+</nav>
 <div class="container">
-
-  <div class="d-flex mt-5">
-    <div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills flex-column" orientation="vertical">
-      <ng-container ngbNavItem="calculator">
-        <button ngbNavLink>Calculator</button>
-        <ng-template ngbNavContent>
-          <app-calculator></app-calculator>
-          <app-calculator></app-calculator>
-        </ng-template>
-      </ng-container>
-      <ng-container ngbNavItem="heroes">
-        <button ngbNavLink>Heroes</button>
-        <ng-template ngbNavContent>
-          <app-heroes></app-heroes>
-        </ng-template>
-      </ng-container>
-      <ng-container ngbNavItem="apod">
-        <button ngbNavLink>Apod</button>
-        <ng-template ngbNavContent>
-          <app-apod></app-apod>
-        </ng-template>
-      </ng-container>
-      <ng-container ngbNavItem="countries">
-        <button ngbNavLink>Countries</button>
-        <ng-template ngbNavContent>
-          <app-countries></app-countries>
-        </ng-template>
-      </ng-container>
-      <ng-container ngbNavItem="forms">
-        <button ngbNavLink>Forms</button>
-        <ng-template ngbNavContent>
-          <!-- <app-template-form></app-template-form> -->
-          <app-reactive-form></app-reactive-form>
-        </ng-template>
-      </ng-container>
-    </div>
-
-    <div [ngbNavOutlet]="nav" class="ms-4"></div>
-  </div>
+  <router-outlet></router-outlet>
 </div>
 
 

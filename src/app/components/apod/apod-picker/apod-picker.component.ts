@@ -15,7 +15,7 @@ export class ApodPickerComponent {
   date: NgbDateStruct = { year: 2021, month: 6, day: 1 };
   @Output() onDateChange = new EventEmitter<string>();
 
-  constructor(private service: ApodService) {
+  constructor() {
   }
 
   handleDateChange() {
