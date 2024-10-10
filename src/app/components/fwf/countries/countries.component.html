@@ -1,15 +1,36 @@
 <div
-    class="container"
+    class="container mb-4"
 >
+<form action="" class="py-5">
+    <mat-form-field class="example-full-width my-2">
+        <mat-label>Filter by name</mat-label>
+        <input matInput placeholder="Filter by name" value="" [(ngModel)]="nameFilter">
+      </mat-form-field>
+</form>
+  <br>
+
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style" (change)="handleOrder($event)" [value]="order">
+    <mat-button-toggle value="name">By Country Name</mat-button-toggle>
+    <mat-button-toggle value="capital">By Capital Name</mat-button-toggle>
+    <mat-button-toggle value="population">By Population</mat-button-toggle>
+    <mat-button-toggle value="area">By Area</mat-button-toggle>
+  </mat-button-toggle-group>
+  <br>
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style" (change)="handleAsc($event)" [value]="asc ? 'asc' : 'desc'">
+    <mat-button-toggle value="asc">Ascendent</mat-button-toggle>
+    <mat-button-toggle value="desc">Descendent</mat-button-toggle>
+  </mat-button-toggle-group>
+  
     <div
         class="row justify-content-center align-items-center g-2"
     >
-    @for (country of countries$ | async | countryOrder : 'name' : 'desc' ; track $index) {
+    @for (country of countries$ | async | countryFilter : nameFilter |countryOrder : order : asc ; track $index) {
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             <div class="card">
                 <img class="card-img-top" [src]="country.flag" alt="Title" />
                 <div class="card-body">
                     <h4 class="card-title">{{country.name | uppercase }}</h4>
+                    <h6 class="card-text">{{country.capital}}</h6>
                     <p class="card-text">{{country.population}}</p>
                     <p class="card-text">{{country.area}}m2</p>
                 </div>

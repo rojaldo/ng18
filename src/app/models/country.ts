@@ -9,13 +9,13 @@ export class Country {
 
     constructor(json?: any) {
         if (json) {
-            this._name = json.name.common;
-            this._capital = json.capital;
-            this._region = json.region;
-            this._subregion = json.subregion;
-            this._population = json.population;
-            this._area = json.area;
-            this._flag = json.flags.png;
+            json.name.common ? this._name = json.name.common : this._name = '';
+            json.capital ? this._capital = json.capital[0] : this._capital = '';
+            json.region ? this._region = json.region : this._region = '';
+            json.subregion ? this._subregion = json.subregion : this._subregion = '';
+            json.population ? this._population = json.population : this._population = 0;
+            json.area ? this._area = json.area : this._area = 0;
+            json.flags.png ? this._flag = json.flags.png : this._flag = '';
         }
     }
 

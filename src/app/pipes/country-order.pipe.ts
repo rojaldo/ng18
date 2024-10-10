@@ -7,7 +7,7 @@ import { Country } from '../models/country';
 })
 export class CountryOrderPipe implements PipeTransform {
 
-  transform(value: Country[] | null, ...args: string[]): Country[] {
+  transform(value: Country[] | null, order: string , asc: boolean): Country[] {
 
     console.log('CountryOrderPipe.transform()');
     
@@ -17,12 +17,17 @@ export class CountryOrderPipe implements PipeTransform {
     }
     
     let result: Country[] = [];
-    switch (args[0]) {
+    switch (order) {
       case 'name':
         result = value.sort((a, b) => a.name.localeCompare(b.name));
         break;
       case 'capital':
-        result = value.sort((a, b) => a.capital.localeCompare(b.capital));
+        result = value.sort((a, b) => {
+          if (a.capital === undefined || b.capital === undefined) {
+            return 0;
+          }
+          return a.capital.localeCompare(b.capital)
+        });
         break;
       case 'population':
         result = value.sort((a, b) => a.population - b.population);
@@ -31,11 +36,11 @@ export class CountryOrderPipe implements PipeTransform {
         result = value.sort((a, b) => a.area - b.area);
         break;
       default:
-        console.log('Invalid order: ' + args[0] );
+        console.log('Invalid order: ' + order);
         
     }
 
-    //args[1] === 'desc' && value.reverse();
+    asc === false && value.reverse();
     
     return result;
   }

@@ -6,6 +6,7 @@
         <button ngbNavLink>Calculator</button>
         <ng-template ngbNavContent>
           <app-calculator></app-calculator>
+          <app-calculator></app-calculator>
         </ng-template>
       </ng-container>
       <ng-container ngbNavItem="heroes">
@@ -24,6 +25,13 @@
         <button ngbNavLink>Countries</button>
         <ng-template ngbNavContent>
           <app-countries></app-countries>
+        </ng-template>
+      </ng-container>
+      <ng-container ngbNavItem="forms">
+        <button ngbNavLink>Forms</button>
+        <ng-template ngbNavContent>
+          <!-- <app-template-form></app-template-form> -->
+          <app-reactive-form></app-reactive-form>
         </ng-template>
       </ng-container>
     </div>
