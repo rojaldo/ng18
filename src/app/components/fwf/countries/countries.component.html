@@ -24,15 +24,15 @@
     <div
         class="row justify-content-center align-items-center g-2"
     >
-    @for (country of countries$ | async | countryFilter : nameFilter |countryOrder : order : asc ; track $index) {
+    @for (country of countries$ | countryFilter : nameFilter | countryOrder : order : asc | async ; track $index) {
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             <div class="card">
                 <img class="card-img-top" [src]="country.flag" alt="Title" />
                 <div class="card-body">
                     <h4 class="card-title">{{country.name | uppercase }}</h4>
                     <h6 class="card-text">{{country.capital}}</h6>
-                    <p class="card-text">{{country.population}}</p>
-                    <p class="card-text">{{country.area}}m2</p>
+                    <p class="card-text">{{country.population | population}}</p>
+                    <p class="card-text">{{country.area}}km²</p>
                 </div>
             </div>
             

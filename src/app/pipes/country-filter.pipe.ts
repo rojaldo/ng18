@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Country } from '../models/country';
+import { map, Observable } from 'rxjs';
 
 @Pipe({
   name: 'countryFilter',
@@ -7,18 +8,18 @@ import { Country } from '../models/country';
 })
 export class CountryFilterPipe implements PipeTransform {
 
-  transform(value: Country[] | null, nameFilter: string): Country[] {
+  transform(value: Observable<Country[]> | null, nameFilter: string): Observable<Country[]> {
     console.log('CountryFilterPipe.transform()');
     
     if (!value) {
-      return [];
+      return new Observable<Country[]>();
     }
     
     if (!nameFilter) {
       return value;
     }
     
-    return value.filter(country => country.name.toLowerCase().includes(nameFilter.toLowerCase()));
+    return value.pipe( map(countries => countries.filter(country => country.name.toLowerCase().includes(nameFilter.toLowerCase()))));
   }
 
 }

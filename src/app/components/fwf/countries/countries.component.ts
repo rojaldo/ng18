@@ -9,11 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CountryFilterPipe } from "../../../pipes/country-filter.pipe";
+import { PopulationPipe } from "../../../pipes/population.pipe";
 
 @Component({
   selector: 'app-countries',
   standalone: true,
-  imports: [UpperCasePipe, CountryOrderPipe, AsyncPipe, MatButtonToggleModule, FormsModule, MatFormFieldModule, MatInputModule, CountryFilterPipe],
+  imports: [UpperCasePipe, CountryOrderPipe, AsyncPipe, MatButtonToggleModule, FormsModule, MatFormFieldModule, MatInputModule, CountryFilterPipe, PopulationPipe],
   templateUrl: './countries.component.html',
   styleUrl: './countries.component.scss'
 })
