@@ -9,6 +9,7 @@ export const routes: Routes = [
     {path: 'countries', loadComponent: () => import('./components/fwf/countries/countries.component').then(m => m.CountriesComponent)},
     {path: 'template-form', loadComponent: () => import('./components/forms/template-form/template-form.component').then(m => m.TemplateFormComponent)},
     {path: 'reactive-form', loadComponent: () => import('./components/forms/reactive-form/reactive-form.component').then(m => m.ReactiveFormComponent)},
+    {path: 'game', loadComponent: () => import('./components/fwf/fwf/fwf.component').then(m => m.FwfComponent)},
     {path: '', redirectTo: '/calculator', pathMatch: 'full'},
     {path: '**', redirectTo: '/calculator'}
 ];
